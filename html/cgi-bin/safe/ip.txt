@@ -1,0 +1,10 @@
+ip:192.168.1.1:mask:255.255.255.0:read:1:write:1:manage:0:
+ip:192.168.1.1:mask:255.255.255.0:read:1:write:1:manage::
+ip:192.168.1.1:mask:255.255.255.0:read:1:write:1:manage::
+ip:192.168.1.1:mask:255.255.255.0:read:1:write:1:manage::
+ip:192.168.1.1:mask:255.255.255.0:read:1:write:1:manage::
+ip:192.168.1.1:mask:255.255.255.0:read:1:write:1:manage::
+ip:192.168.1.1:mask:255.255.255.0:read:1:write:1:manage::
+ip:192.168.1.1:mask:255.255.255.0:read:1:write:1:manage::
+ip:192.168.1.1:mask:255.255.255.0:read:1:write:1:manage::
+ip:192.168.1.1:mask:255.255.255.0:read::write:1:manage::

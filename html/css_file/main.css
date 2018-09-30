@@ -1,0 +1,15 @@
+@charset "utf-8";
+/*Label: 爱图谱手机版
+Version: 1.0
+Design: szy
+Remark: css框架
+*/
+
+/*==============公共样式=====================*/
+@import url(./init.css);
+
+/*==============jquery UI界面库==============*/
+@import url(./jquery_ui/jquery-ui-1.10.2.custom.min.css);
+
+/*==============页面样式======================*/
+@import url(./frame.css);

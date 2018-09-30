@@ -1,0 +1,4 @@
+uboot_version:1
+kernel_version:1.1
+program_version:1.1.1
+ramdisk_version:1.1.1
