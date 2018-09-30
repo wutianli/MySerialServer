@@ -1,0 +1,1398 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<METAHTTP-EQUIV="Pragma"CONTENT="NO-cache">
+<METAHTTP-EQUIV="Cache-Control"CONTENT="NO-cache">
+<METAHTTP-EQUIV="Expires"CONTENT="0">
+<title>串口参数配置</title>
+
+<link rel="stylesheet" href="./css_file/main.css" type="text/css" /> 
+<script type="text/javascript" src="./scripts/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="./scripts/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript" src="./scripts/common.js"></script>
+<script language="javascript" >
+var url=location.search;
+var Request = new Object();
+if(url.indexOf("?")!=-1)
+{
+　　var str = url.substr(1)　//去掉?号
+　　strs = str.split("&");
+　　for(var i=0;i<strs.length;i++)
+　　{
+　　 　 Request[strs[i ].split("=")[0]]=unescape(strs[ i].split("=")[1]);
+　　}
+}
+if(Request["s"]==1)
+{
+}
+else
+{
+	//window.location = "index.html";
+}
+</script>
+<script type="text/javascript">
+$(function() {
+	
+	$("#tabs").tabs(  );
+	
+});
+</script>
+<script type="text/javascript">
+
+$(document).ready
+(
+	
+	function()
+	{
+		//**************************串口1********************************************//
+		$("#port1_form").ready
+		(
+			function(  )
+			{
+				var btl_id=new Array("300","1200","2400","4800","9600","19200","38400","57600","115200","230400","500000","921600","1000000");
+				var sjw_id  =new Array("5","6","7","8");
+				var tzw_id  =new Array("1","2");
+				var jyw_id  =new Array('n','o','e','m','s');
+				var work_id =new Array("1","2","3");
+				var ip_limit=new Array("1","0");
+				var port_type=new Array("1","2","3");
+				jQuery.ajax({
+				url: "./cgi-bin/port1.cgi",
+				data: "name=1",
+				type: "POST",
+				dateType: "json",
+				success: function(shuju)
+				{	
+   					var all_data = shuju.split(':');
+					var baudrate=Number(all_data[0]);
+					var databit=Number(all_data[1]);
+					var stopbit=Number(all_data[2]);
+					var ip_limit_num=Number(all_data[8]);
+					var port_type_num=Number(all_data[9]);
+					for(var i=0;i<3;i++)
+					{	
+						
+						if(port_type_num==port_type[i])
+						{
+							var obj=document.getElementById('type1');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}
+					}
+					for(var i=0;i<13;i++)
+					{	
+						
+						if(baudrate==btl_id[i])
+						{
+							var obj=document.getElementById('port_id1');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}
+					}
+				
+					for(i=0;i<4;i++)
+					{
+						if(databit==sjw_id[i])
+						{
+							var obj=document.getElementById('sjw_id1');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}				
+					}
+					for(i=0;i<2;i++)
+					{			
+						if(stopbit==tzw_id[i])
+						{
+							var obj=document.getElementById('tzw_id1');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}	
+					}
+					for(i=0;i<5;i++)
+					{
+						if(all_data[3]== jyw_id[i])
+						{
+							var obj=document.getElementById('jyw_id1');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}					
+					}
+					
+					for(i=0;i<2;i++)
+					{
+						if(ip_limit_num == ip_limit[i])
+						{
+							var obj=document.getElementById('ip_limit_id1');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}		
+					}
+					var obj=document.getElementById('port_ip_id1');
+					obj.value=all_data[4];
+					var port=document.getElementById('port_bd_id1');
+					port.value=all_data[5];
+					var port1=document.getElementById('port_yc_id1');
+					port1.value=all_data[6];
+					var work1=document.getElementById('work_id1');
+					work1.value=all_data[7];
+				
+				}
+				});
+				
+			}
+		);	
+		
+		//**************************串口2********************************************//
+		$("#port2_form").ready
+		(
+			function(  )
+			{
+				var btl_id=new Array("300","1200","2400","4800","9600","19200","38400","57600","115200","230400","500000","921600","1000000");
+				var sjw_id  =new Array("5","6","7","8");
+				var tzw_id  =new Array("1","2");
+				var jyw_id  =new Array('n','o','e','m','s');
+				var work_id =new Array("1","2","3");
+				var ip_limit=new Array("1","0");
+				var mac_limit=new Array("1","0");
+				var port_type=new Array("1","2","3");
+				jQuery.ajax({
+				url: "./cgi-bin/port2.cgi",
+				data: "name=1",
+				type: "POST",
+				dateType: "json",
+				success: function(shuju)
+				{
+					var all_data = shuju.split(':');
+					var baudrate=Number(all_data[0]);
+					var databit=Number(all_data[1]);
+					var stopbit=Number(all_data[2]);
+					var ip_limit_num=Number(all_data[8]);
+					var port_type_num=Number(all_data[9]);
+					for(var i=0;i<3;i++)
+					{	
+						
+						if(port_type_num==port_type[i])
+						{
+							var obj=document.getElementById('type2');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}
+					}
+					for(var i=0;i<13;i++)
+					{	
+						
+						if(baudrate==btl_id[i])
+						{
+							var obj=document.getElementById('port_id2');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}
+					}
+					for(i=0;i<4;i++)
+					{
+						if(databit==sjw_id[i])
+						{
+							var obj=document.getElementById('sjw_id2');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}				
+					}
+					for(i=0;i<2;i++)
+					{			
+						if(stopbit==tzw_id[i])
+						{
+							var obj=document.getElementById('tzw_id2');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}	
+					}
+					for(i=0;i<5;i++)
+					{
+						if(all_data[3]== jyw_id[i])
+						{
+							var obj=document.getElementById('jyw_id2');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}					
+					}
+					
+					for(i=0;i<2;i++)
+					{
+						if(ip_limit_num == ip_limit[i])
+						{
+							var obj=document.getElementById('ip_limit_id2');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}		
+					}
+									
+					var obj=document.getElementById('port_ip_id2');
+					obj.value=all_data[4];
+					var port=document.getElementById('port_bd_id2');
+					port.value=all_data[5];
+					var port1=document.getElementById('port_yc_id2');
+					port1.value=all_data[6];
+					var work2=document.getElementById('work_id2');
+					work2.value=all_data[7];
+				}
+				});
+				
+			}
+		);	
+		//************************port3**************************//
+		$("#port3_form").ready
+		(
+			function(  )
+			{
+				var btl_id=new Array("300","1200","2400","4800","9600","19200","38400","57600","115200","230400","500000","921600","1000000");
+				var sjw_id  =new Array("5","6","7","8");
+				var tzw_id  =new Array("1","2");
+				var jyw_id  =new Array('n','o','e','m','s');
+				var work_id =new Array("1","2","3");
+				var ip_limit=new Array("1","0");
+				var port_type=new Array("1","2","3");
+				jQuery.ajax({
+				url: "./cgi-bin/port3.cgi",
+				data: "name=1",
+				type: "POST",
+				dateType: "json",
+				success: function(shuju)
+				{
+					var all_data = shuju.split(':');
+					var baudrate=Number(all_data[0]);
+					var databit=Number(all_data[1]);
+					var stopbit=Number(all_data[2]);
+					var work_bit=Number(all_data[7]);
+					var ip_limit_num=Number(all_data[8]);
+					var port_type_num=Number(all_data[9]);
+					for(var i=0;i<3;i++)
+					{	
+						
+						if(port_type_num==port_type[i])
+						{
+							var obj=document.getElementById('type3');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}
+					}
+					for(var i=0;i<13;i++)
+					{	
+						
+						if(baudrate==btl_id[i])
+						{
+							var obj=document.getElementById('port_id3');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}
+					}
+					for(i=0;i<4;i++)
+					{
+						if(databit==sjw_id[i])
+						{
+							var obj=document.getElementById('sjw_id3');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}				
+					}
+					for(i=0;i<2;i++)
+					{			
+						if(stopbit==tzw_id[i])
+						{
+							var obj=document.getElementById('tzw_id3');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}	
+					}
+					for(i=0;i<5;i++)
+					{
+						if(all_data[3]== jyw_id[i])
+						{
+							var obj=document.getElementById('jyw_id3');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}					
+					}
+					
+					for(i=0;i<2;i++)
+					{
+						if(ip_limit_num == ip_limit[i])
+						{
+							var obj=document.getElementById('ip_limit_id3');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}		
+					}									
+					var obj=document.getElementById('port_ip_id3');
+					obj.value=all_data[4];
+					var port=document.getElementById('port_bd_id3');
+					port.value=all_data[5];
+					var port1=document.getElementById('port_yc_id3');
+					port1.value=all_data[6];
+					var work3=document.getElementById('work_id3');
+					work3.value=all_data[7];
+				}
+				});
+				
+			}
+		);	
+		//*************************port4******************************//
+		$("#port4_form").ready
+		(
+			function(  )
+			{
+				var btl_id=new Array("300","1200","2400","4800","9600","19200","38400","57600","115200","230400","500000","921600","1000000");
+				var sjw_id  =new Array("5","6","7","8");
+				var tzw_id  =new Array("1","2");
+				var jyw_id  =new Array('n','o','e','m','s');
+				var work_id =new Array("1","2","3");
+				var ip_limit=new Array("1","0");
+				var port_type=new Array("1","2","3");
+				jQuery.ajax({
+				url: "./cgi-bin/port4.cgi",
+				data: "name=1",
+				type: "POST",
+				dateType: "json",
+				success: function(shuju)
+				{
+					var all_data = shuju.split(':');
+					var baudrate=Number(all_data[0]);
+					var databit=Number(all_data[1]);
+					var stopbit=Number(all_data[2]);
+					var ip_limit_num=Number(all_data[8]);
+					var port_type_num=Number(all_data[9]);
+					for(var i=0;i<3;i++)
+					{	
+						
+						if(port_type_num==port_type[i])
+						{
+							var obj=document.getElementById('type4');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}
+					}					
+					for(var i=0;i<13;i++)
+					{	
+						
+						if(baudrate==btl_id[i])
+						{
+							var obj=document.getElementById('port_id4');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							//alert(shuju);
+							break;
+						}
+					}
+					for(i=0;i<4;i++)
+					{
+						if(databit==sjw_id[i])
+						{
+							var obj=document.getElementById('sjw_id4');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}				
+					}
+					for(i=0;i<2;i++)
+					{			
+						if(stopbit==tzw_id[i])
+						{
+							var obj=document.getElementById('tzw_id4');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}	
+					}
+					for(i=0;i<5;i++)
+					{
+						if(all_data[3]== jyw_id[i])
+						{
+							var obj=document.getElementById('jyw_id4');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}					
+					}
+					
+					for(i=0;i<2;i++)
+					{
+						if(ip_limit_num == ip_limit[i])
+						{
+							var obj=document.getElementById('ip_limit_id4');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}		
+					}
+										
+					var obj=document.getElementById('port_ip_id4');
+					obj.value=all_data[4];
+					var port=document.getElementById('port_bd_id4');
+					port.value=all_data[5];
+					var port1=document.getElementById('port_yc_id4');
+					port1.value=all_data[6];
+					var work4=document.getElementById('work_id4');
+					work4.value=all_data[7];
+				}
+				});
+				
+			}
+		);	
+		//*************************port5******************************//
+		$("#port5_form").ready
+		(
+			function(  )
+			{
+				var btl_id=new Array("300","1200","2400","4800","9600","19200","38400","57600","115200","230400","500000","921600","1000000");
+				var sjw_id  =new Array("5","6","7","8");
+				var tzw_id  =new Array("1","2");
+				var jyw_id  =new Array('n','o','e','m','s');
+				var work_id =new Array("1","2","3");
+				var ip_limit=new Array("1","0");
+				var mac_limit=new Array("1","0");
+				var port_type=new Array("1","2","3");
+				jQuery.ajax({
+				url: "./cgi-bin/port5.cgi",
+				data: "name=1",
+				type: "POST",
+				dateType: "json",
+				success: function(shuju)
+				{
+					var all_data = shuju.split(':');
+					var baudrate=Number(all_data[0]);
+					var databit=Number(all_data[1]);
+					var stopbit=Number(all_data[2]);
+					var work_bit=Number(all_data[7]);
+					var ip_limit_num=Number(all_data[8]);
+					var port_type_num=Number(all_data[9]);
+					for(var i=0;i<3;i++)
+					{	
+						
+						if(port_type_num==port_type[i])
+						{
+							var obj=document.getElementById('type5');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}
+					}					
+					for(var i=0;i<13;i++)
+					{	
+						
+						if(baudrate==btl_id[i])
+						{
+							var obj=document.getElementById('port_id5');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}
+					}
+					for(i=0;i<4;i++)
+					{
+						if(databit==sjw_id[i])
+						{
+							var obj=document.getElementById('sjw_id5');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}				
+					}
+					for(i=0;i<2;i++)
+					{			
+						if(stopbit==tzw_id[i])
+						{
+							var obj=document.getElementById('tzw_id5');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}	
+					}
+					for(i=0;i<5;i++)
+					{
+						if(all_data[3]== jyw_id[i])
+						{
+							var obj=document.getElementById('jyw_id5');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}					
+					}
+					
+					for(i=0;i<2;i++)
+					{
+						if(ip_limit_num == ip_limit[i])
+						{
+							var obj=document.getElementById('ip_limit_id5');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}		
+					}										
+					var obj=document.getElementById('port_ip_id5');
+					obj.value=all_data[4];
+					var port=document.getElementById('port_bd_id5');
+					port.value=all_data[5];
+					var port1=document.getElementById('port_yc_id5');
+					port1.value=all_data[6];
+					var work5=document.getElementById('work_id5');
+					work5.value=all_data[7];
+				}
+				});
+				
+			}
+		);	
+		//*************************port6******************************//
+		$("#port6_form").ready
+		(
+			function(  )
+			{
+				var btl_id=new Array("300","1200","2400","4800","9600","19200","38400","57600","115200","230400","500000","921600","1000000");
+				var sjw_id  =new Array("5","6","7","8");
+				var tzw_id  =new Array("1","2");
+				var jyw_id  =new Array('n','o','e','m','s');
+				var work_id =new Array("1","2","3");
+				var ip_limit=new Array("1","0");
+				var port_type=new Array("1","2","3");
+				jQuery.ajax({
+				url: "./cgi-bin/port6.cgi",
+				data: "name=1",
+				type: "POST",
+				dateType: "json",
+				success: function(shuju)
+				{
+					var all_data = shuju.split(':');
+					var baudrate=Number(all_data[0]);
+					var databit=Number(all_data[1]);
+					var stopbit=Number(all_data[2]);
+					var work_bit=Number(all_data[7]);
+					var ip_limit_num=Number(all_data[8]);
+					var port_type_num=Number(all_data[9]);
+					for(var i=0;i<3;i++)
+					{	
+						
+						if(port_type_num==port_type[i])
+						{
+							var obj=document.getElementById('type6');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}
+					}
+					//alert(shuju);
+					for(var i=0;i<13;i++)
+					{	
+						
+						if(baudrate==btl_id[i])
+						{
+							var obj=document.getElementById('port_id6');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							//alert(shuju);
+							break;
+						}
+					}
+					for(i=0;i<4;i++)
+					{
+						if(databit==sjw_id[i])
+						{
+							var obj=document.getElementById('sjw_id6');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}				
+					}
+					for(i=0;i<2;i++)
+					{			
+						if(stopbit==tzw_id[i])
+						{
+							var obj=document.getElementById('tzw_id6');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}	
+					}
+					for(i=0;i<5;i++)
+					{
+						if(all_data[3]== jyw_id[i])
+						{
+							var obj=document.getElementById('jyw_id6');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}					
+					}
+					
+					for(i=0;i<2;i++)
+					{
+						if(ip_limit_num == ip_limit[i])
+						{
+							var obj=document.getElementById('ip_limit_id6');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}		
+					}					
+					
+					var obj=document.getElementById('port_ip_id6');
+					obj.value=all_data[4];
+					var port=document.getElementById('port_bd_id6');
+					port.value=all_data[5];
+					var port1=document.getElementById('port_yc_id6');
+					port1.value=all_data[6];
+					var work6=document.getElementById('work_id6');
+					work6.value=all_data[7];
+				}
+				});
+				
+			}
+		);	
+		//*************************port7******************************//
+		$("#port2_form").ready
+		(
+			function(  )
+			{
+				var btl_id=new Array("300","1200","2400","4800","9600","19200","38400","57600","115200","230400","500000","921600","1000000");
+				var sjw_id  =new Array("5","6","7","8");
+				var tzw_id  =new Array("1","2");
+				var jyw_id  =new Array('n','o','e','m','s');
+				var work_id =new Array("1","2","3");
+				var ip_limit=new Array("1","0");
+				var port_type=new Array("1","2","3");
+				jQuery.ajax({
+				url: "./cgi-bin/port7.cgi",
+				data: "name=1",
+				type: "POST",
+				dateType: "json",
+				success: function(shuju)
+				{
+					var all_data = shuju.split(':');
+					var baudrate=Number(all_data[0]);
+					var databit=Number(all_data[1]);
+					var stopbit=Number(all_data[2]);
+					var ip_limit_num=Number(all_data[8]);
+					var port_type_num=Number(all_data[9]);
+					for(var i=0;i<3;i++)
+					{	
+						
+						if(port_type_num==port_type[i])
+						{
+							var obj=document.getElementById('type7');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}
+					}
+					for(var i=0;i<13;i++)
+					{	
+						
+						if(baudrate==btl_id[i])
+						{
+							var obj=document.getElementById('port_id7');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							//alert(shuju);
+							break;
+						}
+					}
+					for(i=0;i<4;i++)
+					{
+						if(databit==sjw_id[i])
+						{
+							var obj=document.getElementById('sjw_id7');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}				
+					}
+					for(i=0;i<2;i++)
+					{			
+						if(stopbit==tzw_id[i])
+						{
+							var obj=document.getElementById('tzw_id7');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}	
+					}
+					for(i=0;i<5;i++)
+					{
+						if(all_data[3]== jyw_id[i])
+						{
+							var obj=document.getElementById('jyw_id7');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}					
+					}
+					
+					for(i=0;i<2;i++)
+					{
+						if(ip_limit_num == ip_limit[i])
+						{
+							var obj=document.getElementById('ip_limit_id7');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}		
+					}										
+					var obj=document.getElementById('port_ip_id7');
+					obj.value=all_data[4];
+					var port=document.getElementById('port_bd_id7');
+					port.value=all_data[5];
+					var port1=document.getElementById('port_yc_id7');
+					port1.value=all_data[6];
+					var work7=document.getElementById('work_id7');
+					work7.value=all_data[7];
+				}
+				});
+				
+			}
+		);	
+		//*************************port8******************************//
+		$("#port8_form").ready
+		(
+			function(  )
+			{
+				var btl_id=new Array("300","1200","2400","4800","9600","19200","38400","57600","115200","230400","500000","921600","1000000");
+				var sjw_id  =new Array("5","6","7","8");
+				var tzw_id  =new Array("1","2");
+				var jyw_id  =new Array('n','o','e','m','s');
+				var work_id =new Array("1","2","3");
+				var ip_limit=new Array("1","0");
+				var mac_limit=new Array("1","0");
+				var port_type=new Array("1","2","3");
+				jQuery.ajax({
+				url: "./cgi-bin/port8.cgi",
+				data: "name=1",
+				type: "POST",
+				dateType: "json",
+				success: function(shuju)
+				{
+					//alert(shuju);
+					var all_data = shuju.split(':');
+					var baudrate=Number(all_data[0]);
+					var databit=Number(all_data[1]);
+					var stopbit=Number(all_data[2]);
+					var work_bit=Number(all_data[7]);
+					var ip_limit_num=Number(all_data[8]);
+					var port_type_num=Number(all_data[9]);
+					for(var i=0;i<3;i++)
+					{	
+						
+						if(port_type_num==port_type[i])
+						{
+							var obj=document.getElementById('type8');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}
+					}					
+					for(var i=0;i<13;i++)
+					{	
+						
+						if(baudrate==btl_id[i])
+						{
+							var obj=document.getElementById('port_id8');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							//alert(shuju);
+							break;
+						}
+					}
+					for(i=0;i<4;i++)
+					{
+						if(databit==sjw_id[i])
+						{
+							var obj=document.getElementById('sjw_id8');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						}				
+					}
+					for(i=0;i<2;i++)
+					{			
+						if(stopbit==tzw_id[i])
+						{
+							var obj=document.getElementById('tzw_id8');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}	
+					}
+					for(i=0;i<5;i++)
+					{
+						if(all_data[3]== jyw_id[i])
+						{
+							var obj=document.getElementById('jyw_id8');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}					
+					}
+					
+					for(i=0;i<2;i++)
+					{
+						if(ip_limit_num == ip_limit[i])
+						{
+							var obj=document.getElementById('ip_limit_id8');
+							obj.selectedIndex=i; //序号，取当前选中选项的序号
+							break;
+						
+						}		
+					}										
+					var obj=document.getElementById('port_ip_id8');
+					obj.value=all_data[4];
+					var port=document.getElementById('port_bd_id8');
+					port.value=all_data[5];
+					var port1=document.getElementById('port_yc_id8');
+					port1.value=all_data[6];
+					var work8=document.getElementById('work_id8');
+					work8.value=all_data[7];
+				}
+				});
+				
+			}
+		);	
+		//****************************END******************************//
+	}
+);
+
+
+</script>
+<style type="text/css">
+.help_info_wrap{ font-size:16px;font-weight:200;}
+</style>
+
+</head>
+
+<body>
+    <div class="bodypage">
+    	<div class="content">
+        	<div class="headContent">
+			<marquee behavior=alternate scrollamount=3>  <FONT face=隶书   color="#CCCCCC"  size=5> <B>欢迎您使用北京合众恒跃科技有限公司智能多串口服务器管理系统</B> </FONT >  </marquee>
+            </div>
+            <div class="mainContent">
+
+            	<div class="contentBox" id="contentBox">
+                    <div id="tabs" style=" background:none; width:740px; top:0px; height:440px;">
+                        <ul style=" border:none; background:none; font-size:10px; font-weight:normal">
+                            <li><a href="#tabs-1">串口1</a></li>
+							<li><a href="#tabs-2">串口2</a></li>
+							<li><a href="#tabs-3">串口3</a></li>
+							<li><a href="#tabs-4">串口4</a></li>
+							<li><a href="#tabs-5">串口5</a></li>
+							<li><a href="#tabs-6">串口6</a></li>
+							<li><a href="#tabs-7">串口7</a></li>
+							<li><a href="#tabs-8">串口8</a></li>
+                        </ul>
+                    	<div id="tabs-1" class="logBox">
+						<form id="port1_form">
+						<table border="1"  bordercolor="#CCCCCC" bgcolor="#CCFFFF" style="margin-top:10px" align="center">
+						<tr><td>类 型 </td><td><select name="type" id="type1" style=" width:90px;margin-left:-22px"> <option value="1">RS232</option><option value="2">RS485</option><option value="3">RS422</option> </td></tr>					
+						<tr>
+							<td width="200">波特率</td><td width="400">
+							<select name="port" id="port_id1" style=" width:90px;margin-left:10px" > 
+							<option value="300">300</option> 
+							<option value="1200">1200</option> 
+							<option value="2400">2400</option> 
+							<option value="4800">4800</option> 
+							<option value="9600">9600</option> 
+							<option value="19200">19200</option> 
+							<option value="38400">38400</option> 
+							<option value="57600">57600</option> 
+							<option value="115200">115200</option> 
+							<option value="230400">230400</option> 
+							<option value="500000">500000</option> 
+							<option value="921600">921600</option> 
+							<option value="1000000">1000000</option>
+							</select>Bit/S</td>
+						</tr>
+						<tr><td>数据位</td><td>
+						<select id="sjw_id1" name="sjw" style=" width:90px;margin-left:67px">
+                          <option value="5">5</option>
+                          <option value="6">6</option>
+                          <option value="7">7</option>
+                          <option value="8">8</option>
+                        </select>Bits/charoter</td>
+						</tr>
+						<tr><td>校验位</td>
+						  <td><select name="jyw" id="jyw_id1" style=" width:90px;margin-left:-22px">
+                            <option value="n">None</option>
+                            <option value="o">Odd</option>
+                            <option value="e">Even</option>
+                            <option value="m">Mark</option>
+                            <option value="s">Space</option>
+							
+                          </select></td>
+						</tr>
+						<tr><td>停止位</td>
+						<td><select name="tzw" id="tzw_id1" style=" width:90px;margin-left:-22px"> 
+						<option value="1">1</option> 
+						<option value="2">2</option> 
+						</select></td></tr>
+						<tr><td>工作模式</td>
+						<td><select name="work" id="work_id1" style=" width:90px;margin-left:-22px"> 
+						<option value="1">Tcp Server</option> 
+						<option value="2">Tcp Client</option> 
+						<option value="3">Udp</option>
+						</select></td></tr>
+						<tr><td width="30%">开启IP访问限制</td><td  width="70%"><select name='ip_limit' style=" width:90px;margin-left:-22px" id="ip_limit_id1"><option value="1">yes</option><option value="0">NO</option></td></tr>	
+						<tr><td>远程服务器地址</td>
+						<td><input type="text" name="ip_add" id="port_ip_id1" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled"/></td></tr>
+						<tr><td>对端端口号</td>
+						<td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" name="portnumbd"  id="port_bd_id1" "style="size=30"/></td></tr>
+						<tr><td>本地端口号</td>
+						<td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" name="portnumyc" id="port_yc_id1" style="size=30" /></td></tr>			
+						
+						<tr><td><input type="submit" value="提交"   style="width:100px" /> </td> <td><p style="color:#FF0000">注：本地端口号不能设为9999,端口号范围1025--65535</td></tr>											
+						</table>
+						
+						</form>
+                    	</div>
+						<div id="tabs-2" class="logBox">
+						<form id="port2_form">
+						<table border="1" bordercolor="#CCCCCC" bgcolor="#CCFFFF" style="margin-top:10px" align="center">
+						<tr><td>类 型 </td><td><select name="type" id="type2" style=" width:90px;margin-left:-22px"> <option value="1">RS232</option><option value="2">RS485</option><option value="3">RS422</option> </td></tr>
+						<tr>
+							<td width="200">波特率</td><td width="400">
+							<select name="port" id="port_id2" style=" width:90px;margin-left:10px" > 
+							<option value="300">300</option> 
+							<option value="1200">1200</option> 
+							<option value="2400">2400</option> 
+							<option value="4800">4800</option> 
+							<option value="9600">9600</option> 
+							<option value="19200">19200</option> 
+							<option value="38400">38400</option> 
+							<option value="57600">57600</option> 
+							<option value="115200">115200</option> 
+							<option value="230400">230400</option> 
+							<option value="500000">500000</option> 
+							<option value="921600">921600</option> 
+							<option value="1000000">1000000</option>
+							</select>Bit/S </td>
+						</tr>
+						<tr><td>数据位</td><td>
+						<select name="sjw" id="sjw_id2" style=" width:90px;margin-left:67px"> 
+						<option value="5">5</option> 
+						<option value="6">6</option> 
+						<option value="7">7</option> 
+						<option value="8">8</option> 
+						</select>Bits/charoter</td>
+						</tr>
+						<tr><td>校验位</td>
+						<td><select name="jyw" id="jyw_id2" style=" width:90px;margin-left:-22px"> 
+						<option value="n">None</option> 
+						<option value="o">Odd</option> 
+						<option value="e">Even</option> 
+						<option value="m">Mark</option> 
+						<option value="s">Space</option> 
+						</select></td></tr>
+						<tr><td>停止位</td>
+						<td><select name="tzw" id="tzw_id2" style=" width:90px;margin-left:-22px"> 
+						<option value="1">1</option> 
+						<option value="2">2</option> 
+						</select></td></tr>
+						<tr><td>工作模式</td>
+						<td><select name="work" id="work_id2" style=" margin-left:-20px"> 
+						<option value="1">Tcp Server</option> 
+						<option value="2">Tcp Client</option> 
+						<option value="3">Udp</option>
+						</select></td></tr>
+						<tr><td width="30%">开启IP访问限制</td><td width="70%"><select name='ip_limit' style=" width:90px;margin-left:-22px" id="ip_limit_id2"><option value="1">yes</option><option value="0">NO</option></td></tr>					
+						<tr><td>远程服务器地址</td>
+						<td><input type="text" id="port_ip_id2" name="ip_add" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled"/></td></tr>
+						<tr><td>对端端口号</td>
+						<td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" id="port_bd_id2" name="portnumbd"    style="size=30"   /></td></tr>
+						<tr><td>本地端口号</td>
+						<td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" id="port_yc_id2" name="portnumyc"    style="size=30"   /></td></tr>		
+							
+						<tr><td><input type="submit" value="提交"  style="width:100px" /> </td><td><p style="color:#FF0000">注：本地端口号不能设为9999,端口号范围1025--65535</td></tr>
+						</table>
+						</form>
+                    	</div>
+						<div id="tabs-3" class="logBox">
+						<form id="port3_form">
+						<table border="1" bordercolor="#CCCCCC" bgcolor="#CCFFFF" style="margin-top:10px" align="center">
+						<tr><td>类 型</td><td><select name="type" id="type3" style=" width:90px;margin-left:-22px"> <option value="1">RS232</option><option value="2">RS485</option><option value="3">RS422</option> </td></tr>
+						<tr>
+							<td width="200">波特率</td><td width="400">
+							<select name="port" ID="port_id3" style=" width:90px;margin-left:10px"> 
+							<option value="300">300</option> 
+							<option value="1200">1200</option> 
+							<option value="2400">2400</option> 
+							<option value="4800">4800</option> 
+							<option value="9600">9600</option> 
+							<option value="19200">19200</option> 
+							<option value="38400">38400</option> 
+							<option value="57600">57600</option> 
+							<option value="115200">115200</option> 
+							<option value="230400">230400</option> 
+							<option value="500000">500000</option> 
+							<option value="921600">921600</option> 
+							<option value="1000000">1000000</option>
+							</select>Bit/S </td>
+						</tr>
+						<tr><td>数据位</td><td>
+						<select ID="sjw_id3" name="sjw" style=" width:90px;margin-left:67px"> 
+						<option value="5">5</option> 
+						<option value="6">6</option> 
+						<option value="7">7</option> 
+						<option value="8">8</option> 
+						</select>Bits/charoter</td>
+						</tr>
+						<tr><td>校验位</td>
+						<td><select ID="jyw_id3" name="jyw" style=" width:90px;margin-left:-22px"> 
+						<option value="n">None</option> 
+						<option value="o">Odd</option> 
+						<option value="e">Even</option> 
+						<option value="m">Mark</option> 
+						<option value="s">Space</option> 
+						</select></td></tr>
+						<tr><td>停止位</td>
+						<td><select ID="tzw_id3" name="tzw" style=" width:90px;margin-left:-22px"> 
+						<option value="1">1</option> 
+						<option value="2">2</option> 
+						</select></td></tr>
+						<tr><td>工作模式</td>
+						<td><select name="work" id="work_id3" style=" margin-left:-20px"> 
+						<option value="1">Tcp Server</option> 
+						<option value="2">Tcp Client</option> 
+						<option value="3">Udp</option>
+						</select></td></tr>
+						<tr><td width="30%">开启IP访问限制</td><td width="70%"><select name='ip_limit' style=" width:90px;margin-left:-22px" id="ip_limit_id3"><option value="1">yes</option><option value="0">NO</option></td></tr>					
+						<tr><td>远程服务器地址</td>
+						<td><input ID="port_ip_id3" type="text" name="ip_add" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" /></td></tr>
+						<tr><td>对端端口号</td>
+						<td><input ID="port_bd_id3" type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" name="portnumbd"    style="size=30"  /></td></tr>
+						<tr><td>本地端口号</td>
+						<td><input ID="port_yc_id3" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" type="text" name="portnumyc"    style="size=30"   /></td></tr>		
+						
+						<tr><td><input type="submit" value="提交"  style="width:100px" /> </td><td><p style="color:#FF0000">注：本地端口号不能设为9999,端口号范围1025--65535</td></tr>
+						</table>
+						</form>
+                    	</div>
+						<div id="tabs-4" class="logBox">
+						<form id="port4_form">
+						<table border="1" bordercolor="#CCCCCC" bgcolor="#CCFFFF" style="margin-top:10px" align="center">
+						<tr><td>类 型 </td><td><select name="type" id="type4" style=" width:90px;margin-left:-22px"> <option value="1">RS232</option><option value="2">RS485</option><option value="3">RS422</option> </td></tr>
+						<tr>
+							<td width="200">波特率</td><td width="400">
+							<select name="port" ID="port_id4" style=" width:90px;margin-left:10px"> 
+							<option value="300">300</option> 
+							<option value="1200">1200</option> 
+							<option value="2400">2400</option> 
+							<option value="4800">4800</option> 
+							<option value="9600">9600</option> 
+							<option value="19200">19200</option> 
+							<option value="38400">38400</option> 
+							<option value="57600">57600</option> 
+							<option value="115200">115200</option> 
+							<option value="230400">230400</option> 
+							<option value="500000">500000</option> 
+							<option value="921600">921600</option> 
+							<option value="1000000">1000000</option>
+							</select>Bit/S </td>
+						</tr>
+						<tr><td>数据位</td><td>
+						<select ID="sjw_id4" name="sjw" style=" width:90px;margin-left:67px"> 
+						<option value="5">5</option> 
+						<option value="6">6</option> 
+						<option value="7">7</option> 
+						<option value="8">8</option> 
+						</select>Bits/charoter</td>
+						</tr>
+						<tr><td>校验位</td>
+						<td><select ID="jyw_id4" name="jyw" style=" width:90px;margin-left:-22px"> 
+						<option value="n">None</option> 
+						<option value="o">Odd</option> 
+						<option value="e">Even</option> 
+						<option value="m">Mark</option> 
+						<option value="s">Space</option> 
+						</select></td></tr>
+						<tr><td>停止位</td>
+						<td><select ID="tzw_id4"  name="tzw" style=" width:90px;margin-left:-22px"> 
+						<option value="1">1</option> 
+						<option value="2">2</option> 
+						</select></td></tr>
+						<tr><td>工作模式</td>
+						<td><select name="work" id="work_id4" style=" margin-left:-20px"> 
+						<option value="1">Tcp Server</option> 
+						<option value="2">Tcp Client</option> 
+						<option value="3">Udp</option>
+						</select></td></tr>
+						<tr><td width="30%">开启IP访问限制</td><td width="70%"><select name='ip_limit' style=" width:90px;margin-left:-22px" id="ip_limit_id4"><option value="1">yes</option><option value="0">NO</option></td></tr>					
+						<tr><td>远程服务器地址</td>
+						<td><input type="text" ID="port_ip_id4" name="ip_add"  style="size=30" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled"  /></td></tr>
+						<tr><td>对端端口号</td>
+						<td><input type="text" ID="port_bd_id4" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" name="portnumbd"   style="size=30"   /></td></tr>
+						<tr><td>本地端口号</td>
+						<td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"  ID="port_yc_id4" name="portnumyc"   style="size=30"   /></td></tr>			
+							
+						<tr><td><input type="submit" value="提交"  style="width:100px" /> </td><td><p style="color:#FF0000">注：本地端口号不能设为9999,端口号范围1025--65535</td></tr>
+						</table>
+						</form>
+                    	</div>
+						<div id="tabs-5" class="logBox">
+						<form id="port5_form">
+						<table border="1" bordercolor="#CCCCCC" bgcolor="#CCFFFF" style="margin-top:10px" align="center">
+						<tr><td>类 型</td><td><select name="type" id="type5" style=" width:90px;margin-left:-22px"> <option value="1">RS232</option><option value="2">RS485</option><option value="3">RS422</option> </td></tr>
+						<tr>
+							<td width="200">波特率</td><td width="400">
+							<select name="port" ID="port_id5" style=" width:90px;margin-left:10px"> 
+							<option value="300">300</option> 
+							<option value="1200">1200</option> 
+							<option value="2400">2400</option> 
+							<option value="4800">4800</option> 
+							<option value="9600">9600</option> 
+							<option value="19200">19200</option> 
+							<option value="38400">38400</option> 
+							<option value="57600">57600</option> 
+							<option value="115200">115200</option> 
+							<option value="230400">230400</option> 
+							<option value="500000">500000</option> 
+							<option value="921600">921600</option> 
+							<option value="1000000">1000000</option>
+							</select>Bit/S </td>
+						</tr>
+						<tr><td>数据位</td><td>
+						<select name="sjw" ID="sjw_id5" style=" width:90px;margin-left:67px"> 
+						<option value="5">5</option> 
+						<option value="6">6</option> 
+						<option value="7">7</option> 
+						<option value="8">8</option> 
+						</select>Bits/charoter</td>
+						</tr>
+						<tr><td>校验位</td>
+						<td><select name="jyw" ID="jyw_id5" style=" width:90px;margin-left:-22px"> 
+						<option value="n">None</option> 
+						<option value="o">Odd</option> 
+						<option value="e">Even</option> 
+						<option value="m">Mark</option> 
+						<option value="s">Space</option> 
+						</select></td></tr>
+						<tr><td>停止位</td>
+						<td><select name="tzw" ID="tzw_id5" style=" width:90px;margin-left:-22px"> 
+						<option value="1">1</option> 
+						<option value="2">2</option> 
+						</select></td></tr>
+						<tr><td>工作模式</td>
+						<td><select name="work" id="work_id5" style=" margin-left:-20px"> 
+						<option value="1">Tcp Server</option> 
+						<option value="2">Tcp Client</option> 
+						<option value="3">Udp</option>
+						</select></td></tr>
+						<tr><td width="30%">开启IP访问限制</td><td width="70%"><select name='ip_limit' style=" width:90px;margin-left:-22px" id="ip_limit_id5"><option value="1">yes</option><option value="0">NO</option></td></tr>					
+						<tr><td>远程服务器地址</td>
+						<td><input type="text" ID="port_ip_id5"  name="ip_add"    style="size=30" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled"  /></td></tr>
+						<tr><td>对端端口号</td>
+						<td><input type="text" ID="port_bd_id5" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" name="portnumbd"    style="size=30"   /></td></tr>
+						<tr><td>本地端口号</td>
+						<td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" ID="port_yc_id5" name="portnumyc"    style="size=30"   /></td></tr>	
+						
+						<tr><td><input type="submit" value="提交"  style="width:100px" /> </td><td><p style="color:#FF0000">注：本地端口号不能设为9999,端口号范围1025--65535</td></tr>	
+						</table>
+						</form>
+                    	</div>
+						<div id="tabs-6" class="logBox">
+						<form id="port6_form">
+						<table border="1" bordercolor="#CCCCCC" bgcolor="#CCFFFF" style="margin-top:10px" align="center">
+						<tr><td>类 型 </td><td><select name="type" id="type6" style=" width:90px;margin-left:-22px"> <option value="1">RS232</option><option value="2">RS485</option><option value="3">RS422</option> </td></tr>
+						<tr>
+							<td width="200">波特率</td><td width="400">
+							<select name="port" ID="port_id6" style=" width:90px;margin-left:10px"> 
+							<option value="300">300</option> 
+							<option value="1200">1200</option> 
+							<option value="2400">2400</option> 
+							<option value="4800">4800</option> 
+							<option value="9600">9600</option> 
+							<option value="19200">19200</option> 
+							<option value="38400">38400</option> 
+							<option value="57600">57600</option> 
+							<option value="115200">115200</option> 
+							<option value="230400">230400</option> 
+							<option value="500000">500000</option> 
+							<option value="921600">921600</option> 
+							<option value="1000000">1000000</option>
+							</select>Bit/S </td>
+						</tr>
+						<tr><td>数据位</td><td>
+						<select name="sjw" ID="sjw_id6" style=" width:90px;margin-left:67px"> 
+						<option value="5">5</option> 
+						<option value="6">6</option> 
+						<option value="7">7</option> 
+						<option value="8">8</option> 
+						</select>Bits/charoter</td>
+						</tr>
+						<tr><td>校验位</td>
+						<td><select name="jyw" ID="jyw_id6" style=" width:90px;margin-left:-22px"> 
+						<option value="n">None</option> 
+						<option value="o">Odd</option> 
+						<option value="e">Even</option> 
+						<option value="m">Mark</option> 
+						<option value="s">Space</option> 
+						</select></td></tr>
+						<tr><td>停止位</td>
+						<td><select name="tzw" ID="tzw_id6" style=" width:90px;margin-left:-22px"> 
+						<option value="1">1</option> 
+						<option value="2">2</option> 
+						</select></td></tr>
+						<tr><td>工作模式</td>
+						<td><select name="work" id="work_id6" style=" margin-left:-20px"> 
+						<option value="1">Tcp Server</option> 
+						<option value="2">Tcp Client</option> 
+						<option value="3">Udp</option>
+						</select></td></tr>
+						<tr><td width="30%">开启IP访问限制</td><td width="70%"><select name='ip_limit' style=" width:90px;margin-left:-22px" id="ip_limit_id6"><option value="1">yes</option><option value="0">NO</option></td></tr>					
+						<tr><td>远程服务器地址</td>
+						<td><input type="text" ID="port_ip_id6" name="ip_add"    style="size=30" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" /></td></tr>
+						<tr><td>对端端口号</td>
+						<td><input type="text" ID="port_bd_id6" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" name="portnumbd"    style="size=30"   /></td></tr>
+						<tr><td>本地端口号</td>
+						<td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" ID="port_yc_id6" name="portnumyc"   style="size=30"   /></td></tr>	
+							
+						<tr><td><input type="submit" value="提交"  style="width:100px" /> </td><td><p style="color:#FF0000">注：本地端口号不能设为9999,端口号范围1025--65535</td></tr>	
+						</table>
+						</form>
+                    	</div>
+						<div id="tabs-7" class="logBox">
+						<form id="port7_form">
+						<table border="1" bordercolor="#CCCCCC" bgcolor="#CCFFFF" style="margin-top:10px" align="center">
+						<tr><td>类 型</td><td><select name="type" id="type7" style=" width:90px;margin-left:-22px"> <option value="1">RS232</option><option value="2">RS485</option><option value="3">RS422</option> </td></tr>
+						<tr>
+							<td width="200">波特率</td><td width="400">
+							<select name="port" ID="port_id7" style=" width:90px;margin-left:10px"> 
+							<option value="300">300</option> 
+							<option value="1200">1200</option> 
+							<option value="2400">2400</option> 
+							<option value="4800">4800</option> 
+							<option value="9600">9600</option> 
+							<option value="19200">19200</option> 
+							<option value="38400">38400</option> 
+							<option value="57600">57600</option> 
+							<option value="115200">115200</option> 
+							<option value="230400">230400</option> 
+							<option value="500000">500000</option> 
+							<option value="921600">921600</option> 
+							<option value="1000000">1000000</option>
+							</select>Bit/S </td>
+						</tr>
+						<tr><td>数据位</td><td>
+						<select name="sjw" ID="sjw_id7" style=" width:90px;margin-left:67px"> 
+						<option value="5">5</option> 
+						<option value="6">6</option> 
+						<option value="7">7</option> 
+						<option value="8">8</option> 
+						</select>Bits/charoter</td>
+						</tr>
+						<tr><td>校验位</td>
+						<td><select name="jyw" ID="jyw_id7" style=" width:90px;margin-left:-22px"> 
+						<option value="n">None</option> 
+						<option value="o">Odd</option> 
+						<option value="e">Even</option> 
+						<option value="m">Mark</option> 
+						<option value="s">Space</option> 
+						</select></td></tr>
+						<tr><td>停止位</td>
+						<td><select name="tzw" ID="tzw_id7" style=" width:90px;margin-left:-22px"> 
+						<option value="1">1</option> 
+						<option value="2">2</option> 
+						</select></td></tr>
+						<tr><td>工作模式</td>
+						<td><select name="work" id="work_id7" style=" margin-left:-20px"> 
+						<option value="1">Tcp Server</option> 
+						<option value="2">Tcp Client</option> 
+						<option value="3">Udp</option>
+						</select></td></tr>
+						<tr><td width="30%">开启IP访问限制</td><td width="70%"><select name='ip_limit' style=" width:90px;margin-left:-22px" id="ip_limit_id7"><option value="1">yes</option><option value="0">NO</option></td></tr>					
+						<tr><td>远程服务器地址</td>
+						<td><input type="text" ID="port_ip_id7" name="ip_add"    style="size=30" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled"  /></td></tr>
+						<tr><td>对端端口号</td>
+						<td><input type="text"  ID="port_bd_id7" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"  name="portnumbd"    style="size=30"   /></td></tr>
+						<tr><td>本地端口号</td>
+						<td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" ID="port_yc_id7" name="portnumyc"    style="size=30"   /></td></tr>
+						
+						<tr><td><input type="submit" value="提交"  style="width:100px" /> </td><td><p style="color:#FF0000">注：本地端口号不能设为9999,端口号范围1025--65535</td></tr>	
+						</table>
+	
+						</form>
+                    	</div>
+						<div id="tabs-8" class="logBox">
+						<form id="port8_form">
+						<table border="1" bordercolor="#CCCCCC" bgcolor="#CCFFFF" style="margin-top:10px" align="center">
+						<tr><td>类 型</td><td><select name="type" id="type8" style=" width:90px;margin-left:-22px"> <option value="1">RS232</option><option value="2">RS485</option><option value="3">RS422</option> </td></tr>
+						<tr>
+							<td width="200">波特率</td><td width="400">
+							<select name="port" ID="port_id8" style=" width:90px;margin-left:10px"> 
+							<option value="300">300</option> 
+							<option value="1200">1200</option> 
+							<option value="2400">2400</option> 
+							<option value="4800">4800</option> 
+							<option value="9600">9600</option> 
+							<option value="19200">19200</option> 
+							<option value="38400">38400</option> 
+							<option value="57600">57600</option> 
+							<option value="115200">115200</option> 
+							<option value="230400">230400</option> 
+							<option value="500000">500000</option> 
+							<option value="921600">921600</option> 
+							<option value="1000000">1000000</option>
+							</select>Bit/S </td>
+						</tr>
+						<tr><td>数据位</td><td>
+						<select name="sjw" ID="sjw_id8"  style=" width:90px;margin-left:67px"> 
+						<option value="5">5</option> 
+						<option value="6">6</option> 
+						<option value="7">7</option> 
+						<option value="8">8</option> 
+						</select>Bits/charoter</td>
+						</tr>
+						<tr><td>校验位</td>
+						<td><select name="jyw" ID="jyw_id8" style=" width:90px;margin-left:-22px"> 
+						<option value="n">None</option> 
+						<option value="o">Odd</option> 
+						<option value="e">Even</option> 
+						<option value="m">Mark</option> 
+						<option value="s">Space</option> 
+						</select></td></tr>
+						<tr><td>停止位</td>
+						<td><select name="tzw" ID="tzw_id8" style=" width:90px;margin-left:-22px"> 
+						<option value="1">1</option> 
+						<option value="2">2</option> 
+						</select></td></tr>
+						<tr><td>工作模式</td>
+						<td><select name="work" id="work_id8" style=" margin-left:-20px"> 
+						<option value="1">Tcp Server</option> 
+						<option value="2">Tcp Client</option> 
+						<option value="3">Udp</option>
+						</select></td></tr>
+						<tr><td width="30%">开启IP访问限制</td><td width="70%"><select name='ip_limit' style=" width:90px;margin-left:-22px" id="ip_limit_id8"><option value="1">yes</option><option value="0">NO</option></td></tr>					
+						<tr><td>远程服务器地址</td>
+						<td><input type="text" ID="port_ip_id8" name="ip_add"    style="size=30" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled"  /></td></tr>
+						<tr><td>对端端口号</td>
+						<td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" ID="port_bd_id8" name="portnumbd"    style="size=30"   /></td></tr>
+						<tr><td>本地端口号</td>
+						<td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" ID="port_yc_id8" name="portnumyc"    style="size=30"   /></td></tr>	
+							
+						<tr><td><input type="submit" value="提交"  style="width:100px" /> </td><td><p style="color:#FF0000">注：本地端口号不能设为9999,端口号范围1025--65535</td></tr>	
+						</table>
+						</form>
+                    	</div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="sideContent">
+            	<ul class="sysNav">
+				    <li><a href="version.html?s=1">版本信息</a></li>
+					<li ><a href="Server_Configuration.html?s=1">服务器配置</a></li>
+					<li class="current"><a href="serial_port_setup.html?s=1">串口配置</a></li>
+					<li><a href="safety.html?s=1">安全设置</a></li>
+					<li><a href="port_reboot.html?s=1">重启串口</a></li>
+					<li><a href="sys_maintain.html?s=1">系统维护</a></li>
+					<li><a href="passwords.html?s=1">修改登录密码</a></li>
+					<li><a href="recover.html?s=1">恢复出厂设置</a></li>
+					
+                </ul>
+            
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>

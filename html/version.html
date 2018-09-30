@@ -1,0 +1,130 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<METAHTTP-EQUIV="Pragma"CONTENT="no-cache">
+<METAHTTP-EQUIV="Cache-Control"CONTENT="no-cache">
+<METAHTTP-EQUIV="Expires"CONTENT="0">
+<title>版本信息</title>
+
+<link rel="stylesheet" href="./css_file/main.css" type="text/css" /> 
+<script type="text/javascript" src="./scripts/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="./scripts/jquery-ui-1.10.2.custom.min.js"></script>
+<script language="javascript" >
+var url=location.search;
+var Request = new Object();
+if(url.indexOf("?")!=-1)
+{
+　　var str = url.substr(1)　//去掉?号
+　　strs = str.split("&");
+　　for(var i=0;i<strs.length;i++)
+　　{
+　　 　 Request[strs[i ].split("=")[0]]=unescape(strs[ i].split("=")[1]);
+　　}
+}
+if(Request["s"]==1)
+{
+}
+else
+{
+	window.location = "index.html";
+}
+</script>
+<script type="text/javascript">
+$(function() {
+	
+	$("#tabs").tabs(  );
+	
+});
+</script>
+
+<script type="text/javascript">
+
+$(document).ready
+(
+	
+	function()
+	{
+		$("#version_form").ready
+		(
+			function(  )
+			{
+				var text_id=new Array("uboot","kernel","application","ramdisk");
+			
+				jQuery.ajax({
+				url: "./cgi-bin/VersionAnalysis.cgi",
+				data: "name=1",
+				type: "POST",
+				dateType: "json",
+				success: function(shuju)
+				{
+					var all_data = shuju.split(':');
+					for(var i=0; i<4; i++)
+					{
+						document.getElementById(text_id[i]).value = all_data[i];
+					}
+					
+				}
+				});
+				
+			}
+		);	
+	}
+);
+
+
+</script>
+<style type="text/css">
+.help_info_wrap{ font-size:16px;font-weight:200;}
+</style>
+
+</head>
+
+<body>
+    <div class="bodypage">
+    	<div class="content">
+        	<div class="headContent">
+  			<marquee behavior=alternate scrollamount=3>  <FONT face=隶书   color="#CCCCCC"  size=5> <B>欢迎您使用北京合众恒跃科技有限公司智能多串口服务器管理系统</B> </FONT >  </marquee>
+            </div>
+            <div class="mainContent">
+
+            	<div class="contentBox" id="contentBox">
+                    <div id="tabs" style=" background:none; width:740px; top:25px;">
+                        <ul style=" border:none; background:none; font-size:10px; font-weight:normal">
+                           <!-- <li><a href="#tabs-1">串口1</a></li>-->
+                        </ul>
+						
+                    	<div id="tabs-1" class="logBox" style="color:#666666">	
+							<form id="version_form">
+							<table align="center" style="margin-top:20%">
+							<tr><td>Kernel Version ：</td><td><input type="text" id="kernel" readonly="readonly" style="height:18px; border:0;" /></td></tr>
+							<tr><td>Firmware Version ：</td><td><input type="text" id="application" readonly="readonly" style="height:18px; border:0;"/></td></tr>
+							<tr><td>uboot Version ：</td><td><input type="text" id="uboot" readonly="readonly" style="height:18px; border:0;"/></td></tr>
+							<tr><td>File System Version ：</td><td><input type="text" id="ramdisk" readonly="readonly" style="height:18px; border:0;"/></td></tr>
+							</table>
+							</form>
+                    	</div>						
+                    </div>
+                </div>
+
+            </div>
+            <div class="sideContent">
+            	<ul class="sysNav">
+				    <li class="current"><a href="version.html?s=1">版本信息</a></li>
+					<li ><a href="Server_Configuration.html?s=1">服务器配置</a></li>
+					<li><a href="serial_port_setup.html?s=1">串口配置</a></li>
+					<li><a href="safety.html?s=1">安全设置</a></li>
+					<li><a href="port_reboot.html?s=1">重启串口</a></li>
+					<li><a href="sys_maintain.html?s=1">系统维护</a></li>
+					<li><a href="passwords.html?s=1">修改登录密码</a></li>
+					<li><a href="recover.html?s=1">恢复出厂设置</a></li>
+					
+                </ul>
+            
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>

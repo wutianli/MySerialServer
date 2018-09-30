@@ -1,0 +1,104 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<METAHTTP-EQUIV="Pragma"CONTENT="no-cache">
+<METAHTTP-EQUIV="Cache-Control"CONTENT="no-cache">
+<METAHTTP-EQUIV="Expires"CONTENT="0">
+<title>串口重启</title>
+
+<link rel="stylesheet" href="./css_file/main.css" type="text/css" /> 
+<script type="text/javascript" src="./scripts/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="./scripts/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript" src="./scripts/common.js"></script>
+<script language="javascript" >
+var url=location.search;
+var Request = new Object();
+if(url.indexOf("?")!=-1)
+{
+　　var str = url.substr(1)　//去掉?号
+　　strs = str.split("&");
+　　for(var i=0;i<strs.length;i++)
+　　{
+　　 　 Request[strs[i ].split("=")[0]]=unescape(strs[ i].split("=")[1]);
+　　}
+}
+if(Request["s"]==1)
+{
+}
+else
+{
+	//window.location = "index.html";
+}
+</script>
+<script>
+	function allport()
+	{
+		document.getElementById("serial_1").checked=true;
+		document.getElementById("serial_2").checked=true;
+		document.getElementById("serial_3").checked=true;
+		document.getElementById("serial_4").checked=true;
+		document.getElementById("serial_5").checked=true;
+		document.getElementById("serial_6").checked=true;
+		document.getElementById("serial_7").checked=true;
+		document.getElementById("serial_8").checked=true;
+	}
+</script>
+<script type="text/javascript">
+$(function() {
+	
+	$("#tabs").tabs(  );
+	
+});
+</script>
+<style type="text/css">
+.help_info_wrap{ font-size:16px;font-weight:200;}
+</style>
+
+</head>
+
+<body>
+    <div class="bodypage">
+    	<div class="content">
+        	<div class="headContent">
+			<marquee behavior=alternate scrollamount=3>  <FONT face=隶书   color="#CCCCCC"  size=5> <B>欢迎您使用北京合众恒跃科技有限公司智能多串口服务器管理系统</B> </FONT >  </marquee>
+            </div>
+            <div class="mainContent">
+
+            	<div class="contentBox" id="contentBox">
+                    <div id="tabs" style=" background:none; width:740px; top:25px;">
+                        <ul style=" border:none; background:none; font-size:10px; font-weight:normal">
+                           <!-- <li><a href="#tabs-1">端口1</a></li>-->
+                        </ul>
+                    	<div id="tabs-1" class="logBox" style="margin-left:50px; margin-top:40px">
+						
+						<form id="port_reboot">		
+								<input type="checkbox" id="serial_1" name="serial_1"/>串口①<br /><input type="checkbox" id="serial_2" name="serial_2" />串口②<br /><input type="checkbox" id="serial_3" name="serial_3"/>串口③<br /><input type="checkbox" id="serial_4" name="serial_4"/>串口④<br /><input type="checkbox" id="serial_5" name="serial_5"/>串口⑤<br /><input type="checkbox"  id="serial_6" name="serial_6"/>串口⑥<br /><input type="checkbox" id="serial_7" name="serial_7"/>串口⑦<br /><input type="checkbox" id="serial_8" name="serial_8"/>串口⑧<br />
+							<input type="button" value="全选" onclick="allport()" /><input type="submit" size="10" value="重启"/>
+							<h4 style="color:#FF0000">说明：串口重启,勾选需要重启的串口！</h4>
+							</form>
+                    	</div>						
+                    </div>
+                </div>
+
+            </div>
+            <div class="sideContent">
+            	<ul class="sysNav">
+				    <li><a href="version.html?s=1">版本信息</a></li>
+					<li ><a href="Server_Configuration.html?s=1">服务器配置</a></li>
+					<li><a href="serial_port_setup.html?s=1">串口配置</a></li>
+					<li><a href="safety.html?s=1">安全设置</a></li>
+					<li  class="current"><a href="port_reboot.html?s=1">重启串口</a></li>
+					<li><a href="sys_maintain.html?s=1">系统维护</a></li>
+					<li><a href="passwords.html?s=1">修改登录密码</a></li>
+					<li><a href="recover.html?s=1">恢复出厂设置</a></li>
+					
+                </ul>
+            
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>

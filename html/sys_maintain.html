@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<METAHTTP-EQUIV="Pragma"CONTENT="no-cache">
+<METAHTTP-EQUIV="Cache-Control"CONTENT="no-cache">
+<METAHTTP-EQUIV="Expires"CONTENT="0">
+<title>系统维护</title>
+
+<link rel="stylesheet" href="./css_file/main.css" type="text/css" /> 
+<script type="text/javascript" src="./scripts/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="./scripts/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript" src="./scripts/common.js"></script>
+<script type="text/javascript" src="./scripts/ajaxfileupload.js"></script>
+<script type="text/javascript" src="./scripts/join.js"></script>
+<script language="javascript" >
+var url=location.search;
+var Request = new Object();
+if(url.indexOf("?")!=-1)
+{
+　　var str = url.substr(1)　//去掉?号
+　　strs = str.split("&");
+　　for(var i=0;i<strs.length;i++)
+　　{
+　　 　 Request[strs[i ].split("=")[0]]=unescape(strs[ i].split("=")[1]);
+　　}
+}
+if(Request["s"]==1)
+{
+}
+else
+{
+	//window.location = "index.html";
+}
+</script>
+
+<!-- <script type="text/javascript">
+
+	function UpdateRamdisk(  )
+	{
+		if(document.getElementById("fileToUpload").value=="")
+		{
+			return false;
+		}
+		$("#loading")
+		.ajaxStart(function(  ){
+		    $(this).show();
+			$("#form_file").hide(  );
+			$("#K_Form").hide(   );
+			$("#U_Update").hide(   );
+			$("#U_Button").hide(   );
+			
+			document.getElementById("show_state").value = "正在升级文件系统...";
+		})
+		.ajaxComplete(function(  ){
+		    $(this).hide();
+			$("#form_file").show(  );
+			$("#K_Form").show(  );
+			$("#U_Update").show(  );
+			$("#U_Button").show(   );
+		});
+
+		$.ajaxFileUpload
+		(
+			{
+				url:'./cgi-bin/UpdateSystem.cgi',
+				secureuri:false,
+				fileElementId:'fileToUpload',
+				dataType: 'json',
+				data:{name:'logan', id:'id'},
+				success: function (data, status)
+				{
+					document.getElementById("show_state").value = data.msg;
+				},
+				error: function (data, status, e)
+				{
+					alert(data.error);
+				}
+			}
+		)
+		return false;
+	}
+
+</script>	 -->
+
+<!-- <script>
+function timedMsg(  )
+{
+ 
+ document.getElementById("chongqiwenzi").innerHTML="系统已经重启！";
+ $("#jindutiao").hide();
+  document.getElementById("reboot_button").src="image/kaishi.png";
+ 
+}
+</script> -->
+</head>
+
+<body>
+    <div class="bodypage">
+    	<div class="content">
+        	<div class="headContent">
+            <marquee behavior=alternate scrollamount=3>  <FONT face=隶书   color="#CCCCCC"  size=5> <B>欢迎您使用北京合众恒跃科技有限公司智能多串口服务器管理系统</B> </FONT >  </marquee>
+            </div>
+            <div class="mainContent">
+            
+            	<div class="contentBox" id="contentBox">
+                    <div id="tabs" style=" background:none; width:740px; top:0px;">
+                        <ul style=" border:none; background:none; font-size:10px; font-weight:normal">
+                            <li><a href="#tabs-1">系统重启</a></li>
+                            <!--<li><a href="#tabs-2">系统升级</a></li>-->
+                        </ul>
+
+						 <div id="tabs-1" class="logBox">
+                            <div style="background:#fff; position:absolute; width:400px; top:160px; left:170px;">
+                            <form id="reboot_form" method="post" name="get">
+								<h2 align="center" id="chongqiwenzi">重 启 系 统</h1>
+								<img src="image/restar.gif" id="jindutiao"style="margin-left:60px; margin-top:0px; ""/><br />
+								<input type="image" id="reboot_button" src="image/kaishi.png" height="100"  style="margin-left:150px; margin-top:0px;"/> 
+							</form>
+                            </div>
+                    	</div>
+                    	<!--<div id="tabs-2" class="logBox">
+                    		<div style="background:#fff; position:absolute; width:480px; top:180px; left:170px;">
+							<tr><td><img id="loading" src="image/loading.gif" style="display:none;"></td><td><input type="text"id="show_state"  style="border:0"  size="40" readonly="readonly" /></td></tr>
+							
+							<form name="form" action="" method="POST" enctype="multipart/form-data" id="U_Form">		           				 
+                            <tr><td><input id="U_Update" type="file" size="25" name="U_Update" class="input"></td><td><input type="button"  id="U_Button" onClick="return UpdateUboot();" value="Uboot升级" style="width:100px; height:22px; margin-left:20px"></td></tr>
+							</form>	
+							<br>
+							
+							<form name="form" action="" method="POST" enctype="multipart/form-data" id="K_Form">	           				 
+                            <tr><td><input id="K_Update" type="file" size="25" name="K_Update" class="input"></td><td><input type="button"  id="K_Button" onClick="return UpdateKernel();" value="内核升级" style="width:100px; height:22px; margin-left:20px"></td></tr>
+							</form>	
+							<form name="form" action="" method="POST" enctype="multipart/form-data" id="K_Form">	           				 
+                            <tr><td><input id="K_Update" type="file" size="25" name="K_Update" class="input"></td><td><input type="button"  id="K_Button" onClick="return UpdateKernel();" value="固件升级" style="width:100px; height:22px; margin-left:20px"></td></tr>
+							</form>	
+							<br>
+							
+							<form name="form" action="" method="POST" enctype="multipart/form-data" id="form_file">		           				 
+                            <tr><td><input id="fileToUpload" type="file" size="25" name="fileToUpload" class="input"></td><td><input type="button"  id="buttonUpload" onClick="return UpdateRamdisk();" value="文件系统升级" style="width:100px; height:22px; margin-left:20px"></td></tr>
+							</form>	
+							
+                            </div>
+                    	</div>
+-->
+				   </div>
+                </div>
+            
+            </div>
+            <div class="sideContent">
+            	<ul class="sysNav">
+				    <li><a href="version.html?s=1">版本信息</a></li>
+					<li ><a href="Server_Configuration.html?s=1">服务器配置</a></li>
+					<li><a href="serial_port_setup.html?s=1">串口配置</a></li>
+					<li><a href="safety.html?s=1">安全设置</a></li>
+					<li><a href="port_reboot.html?s=1">重启串口</a></li>
+					<li  class="current"><a href="sys_maintain.html?s=1">系统维护</a></li>
+					<li><a href="passwords.html?s=1">修改登录密码</a></li>
+					<li><a href="recover.html?s=1">恢复出厂设置</a></li>
+                </ul>
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,315 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<METAHTTP-EQUIV="Pragma"CONTENT="no-cache">
+<METAHTTP-EQUIV="Cache-Control"CONTENT="no-cache">
+<METAHTTP-EQUIV="Expires"CONTENT="0">
+<title>安全设置</title>
+
+<link rel="stylesheet" href="./css_file/main.css" type="text/css" /> 
+<script type="text/javascript" src="./scripts/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="./scripts/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript" src="./scripts/common.js"></script>
+<script language="javascript" >
+var url=location.search;
+var Request = new Object();
+if(url.indexOf("?")!=-1)
+{
+　　var str = url.substr(1)　//去掉?号
+　　strs = str.split("&");
+　　for(var i=0;i<strs.length;i++)
+　　{
+　　 　 Request[strs[i ].split("=")[0]]=unescape(strs[ i].split("=")[1]);
+　　}
+}
+if(Request["s"]==1)
+{
+}
+else
+{
+	//window.location = "index.html";
+}
+</script>
+<script type="text/javascript">
+
+$(document).ready
+(
+	
+	function()
+	{
+		$("#safe").ready
+		(
+			function(  )
+			{
+				var text1_id=new Array("ip1","mask1","read1","write1","manage1");
+				var text2_id=new Array("ip2","mask2","read2","write2","manage2");
+				var text3_id=new Array("ip3","mask3","read3","write3","manage3");
+				var text4_id=new Array("ip4","mask4","read4","write4","manage4");
+				var text5_id=new Array("ip5","mask5","read5","write5","manage5");
+				var text6_id=new Array("ip6","mask6","read6","write6","manage6");
+				var text7_id=new Array("ip7","mask7","read7","write7","manage7");
+				var text8_id=new Array("ip8","mask8","read8","write8","manage8");
+				var text9_id=new Array("ip9","mask9","read9","write9","manage9");
+				var text10_id=new Array("ip10","mask10","read10","write10","manage10");
+				jQuery.ajax({
+				url: "./cgi-bin/safe.cgi",
+				data: "name=1",
+				type: "POST",
+				dateType: "json",
+				success: function(shuju)
+				{
+					//alert(shuju);
+					var all_data = shuju.split(':');
+					for(var i=0; i<5; i++)
+					{
+						if(i!=4)
+						{
+							document.getElementById(text1_id[i]).value = all_data[i];
+						}
+						else
+						{
+							var baudrate=Number(all_data[4]);
+							var obj=document.getElementById(text1_id[i]);
+							obj.selectedIndex=baudrate;
+						}
+						
+					}
+					
+					for(var j=0; j<5; j++)
+					{
+						if(j!=4)
+						{
+							document.getElementById(text2_id[j]).value = all_data[j+5];
+						}
+						else
+						{
+							var baudrate=Number(all_data[j+5]);
+							var obj=document.getElementById(text2_id[j]);
+							obj.selectedIndex=baudrate;
+						}
+						
+					}
+					for(var k=0; k<5; k++)
+					{
+						if(k!=4)
+						{
+							document.getElementById(text3_id[k]).value = all_data[k+10];
+						}
+						else
+						{
+							var baudrate=Number(all_data[k+10]);
+							var obj=document.getElementById(text3_id[k]);
+							obj.selectedIndex=baudrate;
+						}
+						
+					}
+					for(j=0; j<5; j++)
+					{
+						if(j!=4)
+						{
+							document.getElementById(text4_id[j]).value = all_data[j+15];
+						}
+						else
+						{
+							var baudrate=Number(all_data[j+15]);
+							var obj=document.getElementById(text4_id[j]);
+							obj.selectedIndex=baudrate;
+						}
+						
+					}
+					for(j=0; j<5; j++)
+					{
+						if(j!=4)
+						{
+							document.getElementById(text5_id[j]).value = all_data[j+20];
+						}
+						else
+						{
+							var baudrate=Number(all_data[j+20]);
+							var obj=document.getElementById(text5_id[j]);
+							obj.selectedIndex=baudrate;
+						}
+						
+					}
+					for(j=0; j<5; j++)
+					{
+						if(j!=4)
+						{
+							document.getElementById(text6_id[j]).value = all_data[j+25];
+						}
+						else
+						{
+							var baudrate=Number(all_data[j+25]);
+							var obj=document.getElementById(text6_id[j]);
+							obj.selectedIndex=baudrate;
+						}
+						
+					}
+					for(j=0; j<5; j++)
+					{
+						if(j!=4)
+						{
+							document.getElementById(text7_id[j]).value = all_data[j+30];
+						}
+						else
+						{
+							var baudrate=Number(all_data[j+30]);
+							var obj=document.getElementById(text7_id[j]);
+							obj.selectedIndex=baudrate;
+						}
+						
+					}
+					for(j=0; j<5; j++)
+					{
+						if(j!=4)
+						{
+							document.getElementById(text8_id[j]).value = all_data[j+35];
+						}
+						else
+						{
+							var baudrate=Number(all_data[j+35]);
+							var obj=document.getElementById(text8_id[j]);
+							obj.selectedIndex=baudrate;
+						}
+						
+					}
+					for(j=0; j<5; j++)
+					{
+						if(j!=4)
+						{
+							document.getElementById(text9_id[j]).value = all_data[j+40];
+						}
+						else
+						{
+							var baudrate=Number(all_data[j+40]);
+							var obj=document.getElementById(text9_id[j]);
+							obj.selectedIndex=baudrate;
+						}
+						
+					}
+					for(j=0; j<5; j++)
+					{
+						if(j!=4)
+						{
+							document.getElementById(text10_id[j]).value = all_data[j+45];
+						}
+						else
+						{
+							var baudrate=Number(all_data[j+45]);
+							var obj=document.getElementById(text10_id[j]);
+							obj.selectedIndex=baudrate;
+						}
+						
+					}
+					
+				}
+				});
+				
+			}
+		);	
+	}
+);
+
+
+</script>
+<script type="text/javascript">
+$(function() {
+	
+	$("#tabs").tabs(  );
+	
+});
+</script>
+<style type="text/css">
+.help_info_wrap{ font-size:16px;font-weight:200;}
+</style>
+
+</head>
+
+<body>
+    <div class="bodypage">
+    	<div class="content">
+        	<div class="headContent">
+			<marquee behavior=alternate scrollamount=3>  <FONT face=隶书   color="#CCCCCC"  size=5> <B>欢迎您使用北京合众恒跃科技有限公司智能多串口服务器管理系统</B> </FONT >  </marquee>
+            </div>
+            <div class="mainContent">
+
+            	<div class="contentBox" id="contentBox">
+                    <div id="tabs" style=" background:none; width:740px; top:9px;">
+                        <ul style=" border:none; background:none; font-size:10px; font-weight:normal">
+                          <!--<li><a href="#tabs-1">设置</a></li>-->
+						  <li><a href="#tabs-2">IP访问限制</a></li>
+						 <!-- <li><a href="#tabs-3">MAC访问限制</a></li>-->
+                        </ul>
+<!--                    	<div id="tabs-1" class="logBox">	
+						<table align="center">	
+							<tr><td width="30%">允许查找</td><td width="70%"><select name='A46'><option>yes</option><option>no</option></td></tr>
+							<tr><td width=30%>允许下载FIRMWARE</td><td width=70%><select name='A46'><option>yes<option>no</option></td></tr>
+							<tr><td width=30%>允许TELNET</td><td width=70%><select name='A46'><option>yes<option>no</option></td></tr>
+							<tr><td width=30%>允许HTTP</td><td width=70%><select name='A46'><option>yes<option>no</option></td></tr>
+							<tr><td>&nbsp;</td><td><input type="submit" /></td></tr>
+						</table>
+                    	</div>	-->
+						<div id="tabs-2" class="logBox">
+						<form id="safe">
+						<table bgcolor="#CCFFFF" border="0" style="margin-left:30px">
+						<tr><td align=center width=5%>序号</td><td align=center width=25%>网络地址</td><td align=center width=25%>网络掩码</td><td align=center width=15%>串口读</td><td align=center width=15%>串口写/控制</td><td align=center width=15%>管理</td></tr>
+						<tr><td >1</td><td><input type="text" size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip1" id="ip1"/></td><td><input type="text" size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled"  size="10" name="mask1" id="mask1"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read1" id="read1"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write1" id="write1"/></td></td> <td ><select name='manage1' id='manage1'><option value="0">NO</option><option value="1">RO</option><option value="2">FULL</option></option></select></td></tr>
+						<tr><td>2</td><td><input type="text" size="14"  onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip2" id="ip2"/></td><td><input type="text" size="14"  onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled"  size="10" name="mask2" id="mask2"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read2" id="read2"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write2" id="write2"/></td></td> <td ><select name='manage2' id='manage2'><option value="0">NO</option><option value="1">RO</option><option value="2">FULL</option></tr>
+						<tr><td>3</td><td><input type="text" size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip3" id="ip3"/></td><td><input type="text" size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="mask3" id="mask3"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read3" id="read3"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write3" id="write3"/></td></td> <td ><select name='manage3' id='manage3'><option value="0">NO</option><option value="1">RO</option><option value="2">FULL</option></tr>
+						<tr><td>4</td><td><input type="text" size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip4" id="ip4"/></td><td><input type="text" size="14"  onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="mask4" id="mask4"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read4" id="read4"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write4" id="write4"/></td></td> <td ><select name='manage4' id='manage4'><option value="0">NO</option><option value="1">RO</option><option value="2">FULL</option></tr>
+						<tr><td>5</td><td><input type="text" size="14"  onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip5" id="ip5"/></td><td><input type="text" size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="mask5" id="mask5"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read5" id="read5"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write5" id="write5"/></td></td> <td ><select name='manage5' id='manage5'><option value="0">NO</option><option value="1">RO</option><option value="2">FULL</option></tr>
+						<tr><td>6</td><td><input type="text" size="14"  onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip6" id="ip6"/></td><td><input type="text" size="14"  onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="mask6" id="mask6"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read6" id="read6"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write6" id="write6"/></td></td> <td ><select name='manage6' id='manage6'><option value="0">NO</option><option value="1">RO</option><option value="2">FULL</option></tr>
+						<tr><td>7</td><td><input type="text"  size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip7" id="ip7"/></td><td><input type="text" size="14"  onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="mask7" id="mask7"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read7" id="read7"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write7" id="write7"/></td></td> <td ><select name='manage7' id='manage7'><option value="0">NO</option><option value="1">RO</option><option value="2">FULL</option></tr>
+						<tr><td>8</td><td><input type="text" size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip8" id="ip8"/></td><td><input type="text" size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="mask8" id="mask8"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read8" id="read8"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write8" id="write8"/></td></td> <td ><select name='manage8' id='manage8'><option value="0">NO</option><option value="1">RO</option><option value="2">FULL</option></tr>
+						<tr><td>9</td><td><input type="text" size="14"  onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip9" id="ip9"/></td><td><input type="text"  size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="mask9" id="mask9"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read9" id="read9"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write9" id="write9"/></td></td> <td ><select name='manage9' id='manage9'><option value="0">NO</option><option value="0">RO</option><option value="2">FULL</option></tr>
+						<tr><td>10</td><td><input type="text" size="14"  onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip10" id="ip10"/></td><td><input type="text"  size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="mask10" id="mask10"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read10" id="read10"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write10" id="write10"/></td></td> <td ><select name='manage10' id='manage10'><option value="0">NO</option><option value="1">RO</option><option value="2">FULL</option></tr>
+						<tr><td>11</td><td><input type="text" size="14"  onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip11" id="ip11"/></td><td><input type="text"  size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="mask11" id="mask11"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read11" id="read11"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write11" id="write11"/></td></td> <td ><select name='manage11' id='manage11'><option value="0">NO</option><option value="1">RO</option><option value="2">FULL</option></tr>
+						<tr><td>12</td><td><input type="text" size="14"  onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip12" id="ip12"/></td><td><input type="text"  size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="mask12" id="mask12"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read12" id="read12"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write12" id="write12"/></td></td> <td ><select name='manage12' id='manage12'><option value="0">NO</option><option value="1">RO</option><option value="2">FULL</option></tr>
+						<tr><td>13</td><td><input type="text" size="14"  onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip13" id="ip13"/></td><td><input type="text"  size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="mask13" id="mask13"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read13" id="read13"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write10" id="write10"/></td></td> <td ><select name='manage13' id='manage13'><option value="0">NO</option><option value="1">RO</option><option value="2">FULL</option></tr>
+						<tr><td>14</td><td><input type="text" size="14"  onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip14" id="ip14"/></td><td><input type="text"  size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="mask14" id="mask14"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read14" id="read14"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write14" id="write14"/></td></td> <td ><select name='manage14' id='manage14'><option value="0">NO</option><option value="1">RO</option><option value="2">FULL</option></tr>
+						<tr><td>15</td><td><input type="text" size="14"  onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip15" id="ip15"/></td><td><input type="text"  size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="mask15" id="mask15"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read15" id="read15"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write15" id="write15"/></td></td> <td ><select name='manage15' id='manage15'><option value="0">NO</option><option value="1">RO</option><option value="2">FULL</option></tr>
+						<tr><td>16</td><td><input type="text" size="14"  onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="ip16" id="ip16"/></td><td><input type="text"  size="14" onKeypress="return (/[\d.]/.test(String.fromCharCode(event.keyCode)))" style="ime-mode:Disabled" size="10" name="mask16" id="mask16"/><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="read16" id="read16"/></td><td><input type="text" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))" size="4" name="write16" id="write16"/></td></td> <td ><select name='manage16' id='manage16'><option value="0">NO</option><option value="1">RO</option><option value="2">FULL</option></tr>
+						<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td><input type="submit" value="提交" /></td></tr>
+						</table>
+						</form>
+						</div>	
+						<!--<div id="tabs-3" class="logBox">
+						<table>
+						<tr><td align=center width=5%>序号</td><td width=25%>MAC地址</td></tr>
+						<tr><td>1</td><td><input type="text" size="3" name="mac01" />.<input type="text" size="3" name="mac02"/>.<input type="text" size="3" name="mac03" />.<input type="text"  size="3" name="mac04"/>.<input type="text" size="3"  name="mac05"/>.<input type="text" size="3" name="mac06" /></td></tr>
+						<tr><td>2</td><td><input type="text" size="3" name="mac01" />.<input type="text" size="3" name="mac02"/>.<input type="text" size="3" name="mac03" />.<input type="text"  size="3" name="mac04"/>.<input type="text" size="3"  name="mac05"/>.<input type="text" size="3" name="mac06" /></td></tr>
+						<tr><td>3</td><td><input type="text" size="3" name="mac01" />.<input type="text" size="3" name="mac02"/>.<input type="text" size="3" name="mac03" />.<input type="text"  size="3" name="mac04"/>.<input type="text" size="3"  name="mac05"/>.<input type="text" size="3" name="mac06" /></td></tr>
+						<tr><td>4</td><td><input type="text" size="3" name="mac01" />.<input type="text" size="3" name="mac02"/>.<input type="text" size="3" name="mac03" />.<input type="text"  size="3" name="mac04"/>.<input type="text" size="3"  name="mac05"/>.<input type="text" size="3" name="mac06" /></td></tr>
+						<tr><td>5</td><td><input type="text" size="3" name="mac01" />.<input type="text" size="3" name="mac02"/>.<input type="text" size="3" name="mac03" />.<input type="text"  size="3" name="mac04"/>.<input type="text" size="3"  name="mac05"/>.<input type="text" size="3" name="mac06" /></td></tr>
+						<tr><td>6</td><td><input type="text" size="3" name="mac01" />.<input type="text" size="3" name="mac02"/>.<input type="text" size="3" name="mac03" />.<input type="text"  size="3" name="mac04"/>.<input type="text" size="3"  name="mac05"/>.<input type="text" size="3" name="mac06" /></td></tr>
+						<tr><td>7</td><td><input type="text" size="3" name="mac01" />.<input type="text" size="3" name="mac02"/>.<input type="text" size="3" name="mac03" />.<input type="text"  size="3" name="mac04"/>.<input type="text" size="3"  name="mac05"/>.<input type="text" size="3" name="mac06" /></td></tr>
+						<tr><td>8</td><td><input type="text" size="3" name="mac01" />.<input type="text" size="3" name="mac02"/>.<input type="text" size="3" name="mac03" />.<input type="text"  size="3" name="mac04"/>.<input type="text" size="3"  name="mac05"/>.<input type="text" size="3" name="mac06" /></td></tr>
+						<tr><td>9</td><td><input type="text" size="3" name="mac01" />.<input type="text" size="3" name="mac02"/>.<input type="text" size="3" name="mac03" />.<input type="text"  size="3" name="mac04"/>.<input type="text" size="3"  name="mac05"/>.<input type="text" size="3" name="mac06" /></td></tr>
+						<tr><td><input type="submit" /></td></tr>
+						</table>
+						</div>					-->
+                    </div>
+                </div>
+
+            </div>
+            <div class="sideContent">
+            	<ul class="sysNav">
+				    <li><a href="version.html?s=1">版本信息</a></li>
+					<li ><a href="Server_Configuration.html?s=1">服务器配置</a></li>
+					<li><a href="serial_port_setup.html?s=1">串口配置</a></li>
+					<li  class="current"><a href="safety.html?s=1">安全设置</a></li>
+					<li><a href="port_reboot.html?s=1">重启串口</a></li>
+					<li><a href="sys_maintain.html?s=1">系统维护</a></li>
+					<li><a href="passwords.html?s=1">修改登录密码</a></li>
+					<li><a href="recover.html?s=1">恢复出厂设置</a></li>
+					
+                </ul>
+            
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>

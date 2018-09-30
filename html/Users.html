@@ -1,0 +1,178 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<METAHTTP-EQUIV="Pragma"CONTENT="NO-cache">
+<METAHTTP-EQUIV="Cache-Control"CONTENT="NO-cache">
+<METAHTTP-EQUIV="Expires"CONTENT="0">
+<title>用户表</title>
+
+<link rel="stylesheet" href="./css_file/main.css" type="text/css" /> 
+<script type="text/javascript" src="./scripts/jquery-1.8.2.min.js"></script>
+<script type="text/javascript" src="./scripts/jquery-ui-1.10.2.custom.min.js"></script>
+<script type="text/javascript" src="./scripts/common.js"></script>
+<script language="javascript" >
+var url=location.search;
+var Request = new Object();
+if(url.indexOf("?")!=-1)
+{
+　　var str = url.substr(1)　//去掉?号
+　　strs = str.split("&");
+　　for(var i=0;i<strs.length;i++)
+　　{
+　　 　 Request[strs[i ].split("=")[0]]=unescape(strs[ i].split("=")[1]);
+　　}
+	alert(Request["username"]);
+}
+if(Request["username"]==1)
+{
+}
+else
+{
+	window.location = "index.html";
+}
+</script>
+<script language="javascript" >
+function Post()
+{
+	url = "version.html?username=1";
+　　location.href=url;
+}
+
+</script>
+<script type="text/javascript">
+
+$(document).ready
+(
+	
+	function()
+	{
+		//**************************串口1********************************************//
+		$("#user_list").ready
+		(
+			function(  )
+			{
+			
+				var name_buff  =new Array("name1","name2","name3","name4","name5","name6","name7","name8","name9","name10");
+				var password_buff =new Array("password1","password2","password3","password4","password5","password6","password7","password8","password9","password10");
+				var r_port_buff=new Array("r_port1","r_port2","r_port3","r_port4","r_port5","r_port6","r_port7","r_port8","r_port9","r_port10");
+				var w_port_buff=new Array("w_port1","w_port2","w_port3","w_port4","w_port5","w_port6","w_port7","w_port8","w_port9","w_port10");
+				var manage_buff=new Array("manage1","manage2","manage3","manage4","manage5","manage6","manage7","manage8","manage9","manage10");
+				var phone_buff=new Array("phone1","phone2","phone3","phone4","phone5","phone6","phone7","phone8","phone9","phone10");
+			
+				jQuery.ajax({
+				url: "./cgi-bin/user_list.cgi",
+				data: "name=1",
+				type: "POST",
+				dateType: "json",
+				success: function(shuju)
+				{
+					//alert(shuju);
+					var all_data = shuju.split(':');
+					var count=Number(all_data[0]);
+					for(var i=0;i<count;i++)
+					{
+						var obj=document.getElementById(name_buff[i]);
+						obj.value=all_data[i*6+1];
+						var obj=document.getElementById(password_buff[i]);
+						obj.value=all_data[i*6+2];
+						var obj=document.getElementById(r_port_buff[i]);
+						obj.value=all_data[i*6+3];
+						var obj=document.getElementById(w_port_buff[i]);
+						obj.value=all_data[i*6+4];
+						var obj=document.getElementById(manage_buff[i]);
+						obj.value=all_data[i*6+5];						
+						var obj=document.getElementById(phone_buff[i]);
+						obj.value=all_data[i*6+6];		
+					}
+					
+				}
+				});
+				
+			}
+		);	
+		//****************************END******************************//
+	}
+);
+
+</script>
+<script type="text/javascript">
+$(function() {
+	
+	$("#tabs").tabs(  );
+	
+});
+</script>
+<style type="text/css">
+.help_info_wrap{ font-size:16px;font-weight:200;}
+</style>
+
+</head>
+
+<body>
+    <div class="bodypage">
+    	<div class="content">
+        	<div class="headContent">
+			<marquee behavior=alternate scrollamount=3>  <FONT face=隶书   color="#CCCCCC"  size=5> <B>欢迎您使用北京合众恒跃科技有限公司智能多串口服务器管理系统</B> </FONT >  </marquee>
+            </div>
+            <div class="mainContent">
+
+            	<div class="contentBox" id="contentBox">
+                    <div id="tabs" style=" background:none; width:740px; top:25px;">
+                        <ul style=" border:none; background:none; font-size:10px; font-weight:normal">
+                           <!-- <li><a href="#tabs-1">串口1</a></li>-->
+                        </ul>
+                    	<div id="tabs-1" class="logBox">
+						<form id="user_list">		
+						<table border="0">
+						<tr>
+						<td align=center width=5%>序号</td><td align=center width=10%>用户名</td><td align=center width=14%>密码</td><td align=center width=12%>端口读</td><td align=center width=12%>端口写/控制</td><td align=center width=10%>管理</td><td align=center width=12%>回拨电话号码</td>
+						</tr>
+						<tr><td>1</td><td><input type="text" size="7" id="name1" name="name1" /></td><td><input type="text" size="7" id="password1" name="password1"/></td><td><input type="text" size="4" id="r_port1"  name="r_port1"/></td><td><input type="text" size="4" id="w_port1" name="w_port1"/></td><td ><select id="manage1" name="manage1"><option value="1">NO</option><option value="2">RO</option><option value="3">FULL</option></td><td><input type="text" size="10" id="phone1" name="phone1" /></td></tr>
+						
+						<tr><td>2</td><td><input type="text" size="7" id="name2" name="name2"/></td><td><input type="text" size="7" id="password2" name="password2"/></td><td><input type="text" size="4"id="r_port2"  name="r_port2"/></td><td><input type="text" size="4" id="w_port2" name="w_port2"/></td><td ><select id="manage2" name='manage2'><option value="1">NO</option><option value="2">RO</option><option value="3">FULL</option></td><td><input type="text" size="10"id="phone2" name="phone2" /></td></tr>
+						
+						<tr><td>3</td><td><input type="text" size="7" id="name3" name="name3" /></td><td><input type="text" size="7" id="password3" name="password3"/></td><td><input type="text" size="4" id="r_port3"  name="r_port3"/></td><td><input type="text" size="4" id="w_port3" name="w_port3"/></td><td ><select id="manage3" name="manage3"><option value="1">NO</option><option value="2">RO</option><option value="3">FULL</option></td><td><input type="text" size="10" id="phone3" name="phone3" /></td></tr>
+						
+						<tr><td>4</td><td><input type="text" size="7" id="name4" name="name4"/></td><td><input type="text" size="7" id="password4" name="password4"/></td><td><input type="text" size="4" id="r_port4"  name="r_port4"/></td><td><input type="text" size="4" id="w_port4" name="w_port4"/></td><td ><select id="manage4" name="manage4"><option value="1">NO</option><option value="2">RO</option><option value="3">FULL</option></td><td><input type="text" size="10" id="phone4" name="phone4"/></td></tr>
+						
+						<tr><td>5</td><td><input type="text" size="7" id="name5" name="name5"/></td><td><input type="text" size="7" id="password5" name="password5"/></td><td><input type="text" size="4" id="r_port5"  name="r_port5"/></td><td><input type="text" size="4" id="w_port5" name="w_port5"/></td><td ><select id="manage5" name="manage5"><option value="1">NO</option><option value="2">RO</option><option value="3">FULL</option></td><td><input type="text" size="10" id="phone5" name="phone5"/></td></tr>
+						
+						<tr><td>6</td><td><input type="text" size="7" id="name6" name="name6"/></td><td><input type="text" size="7" id="password6" name="password6"/></td><td><input type="text" size="4" id="r_port6"  name="r_port6"/></td><td><input type="text" size="4" id="w_port6" name="w_port6"/></td><td ><select id="manage6" name="manage6"><option value="1">NO</option><option value="2">RO</option><option value="3">FULL</option></td><td><input type="text" size="10" id="phone6" name="phone6"/></td></tr>
+						
+						<tr><td>7</td><td><input type="text" size="7" id="name7" name="name7"/></td><td><input type="text" size="7" id="password7" name="password7"/></td><td><input type="text" size="4" id="r_port7"  name="r_port7"/></td><td><input type="text" size="4" id="w_port7" name="w_port7"/></td><td ><select id="manage7" name="manage7"><option value="1">NO</option><option value="2">RO</option><option value="3">FULL</option></td><td><input type="text" size="10" id="phone7" name="phone7"/></td></tr>
+						
+						<tr><td>8</td><td><input type="text" size="7" id="name8" name="name8"/></td><td><input type="text" size="7" id="password8" name="password8"/></td><td><input type="text" size="4" id="r_port8"  name="r_port8"/></td><td><input type="text" size="4" id="w_port8" name="w_port8"/></td><td ><select id="manage8" name="manage8"><option value="1">NO</option><option value="2">RO</option><option value="3">FULL</option></td><td><input type="text" size="10" id="phone8" name="phone8"/></td></tr>
+						<tr><td>9</td><td><input type="text" size="7" id="name9" name="name9"/></td><td><input type="text" size="7" id="password9" name="password9"/></td><td><input type="text" size="4" id="r_port9"  name="r_port9"/></td><td><input type="text" size="4" id="w_port9" name="w_port9"/></td><td ><select id="manage9" name="manage9"><option value="1">NO</option><option value="2">RO</option><option value="3">FULL</option></td><td><input type="text" size="10" id="phone9" name="phone9" /></td></tr>
+						
+						<tr><td>10</td><td><input type="text" size="7" id="name10" name="name10"/></td><td><input type="text" size="7" id="password10" name="password10"/></td><td><input type="text" size="4" id="r_port10"  name="r_port10"/></td><td><input type="text" size="4" id="w_port10" name="w_port10"/></td><td ><select id="manage10" name="manage10"><option value="1">NO</option><option value="2">RO</option><option value="3">FULL</option></td><td><input type="text" size="10" id="phone10" name="phone10"/></td></tr>
+						
+						<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td align="right"><input type="submit" style="width:90px"/></td></tr>
+						</table>
+						</form>
+                    	</div>						
+                    </div>
+                </div>
+
+            </div>
+            <div class="sideContent">
+            	<ul class="sysNav">
+				    <li ><a href="version.html?username=1">版本信息</a></li>
+					<li ><a href="Server_Configuration.html">服务器配置</a></li>
+					<li><a href="serial_port_setup.html">串口配置</a></li>
+					<li><a href="safety.html">安全设置</a></li>
+					<li class="current"><a href="Users.html">用户表</a></li>
+					<li><a href="port_reboot.html">重启串口</a></li>
+					<li><a href="sys_maintain.html">系统维护</a></li>
+					<li><a href="passwords.html">修改登录密码</a></li>
+					<li><a href="recover.html">恢复出厂设置</a></li>
+					
+                </ul>
+            
+            </div>
+        </div>
+        
+    </div>
+
+</body>
+</html>
